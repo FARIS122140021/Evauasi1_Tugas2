@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "grpc-saga/proto;payment";
+
+service PaymentService {
+    rpc ProcessPayment(ProcessPaymentRequest) returns (ProcessPaymentResponse);
+    rpc RefundPayment(RefundPaymentRequest) returns (RefundPaymentResponse);
+}
+
+message ProcessPaymentRequest {
+    string order_id = 1;
+}
+
+message ProcessPaymentResponse {
+    string order_id = 1;
+    string status = 2;
+}
+
+message RefundPaymentRequest {
+    string order_id = 1;
+}
+
+message RefundPaymentResponse {
+    string message = 1;
+}
